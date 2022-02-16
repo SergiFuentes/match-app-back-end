@@ -66,7 +66,12 @@ class MatchUpBackApplicationTests {
                 .andExpect(status().isOk()) //Check the status code of the response
                 .andExpect(content().json(expectedJson)) //Check the JSON of the response
                 .andExpect(jsonPath("$.length()").value("4"))
-                .andExpect(jsonPath("$.[1].id").value("2"));
+                .andExpect(jsonPath("$.[0].id").value(1))
+                .andExpect(jsonPath("$.[1].name").value("Juan Gonzalez"))
+                .andExpect(jsonPath("$.[2].image").value("no-image"))
+                .andExpect(jsonPath("$.[3].location").value("Gijón"))
+                .andExpect(jsonPath("$.[0].description").value("description"))
+                .andExpect(jsonPath("$.[1].time").value("18h-20h"));
     }
 }
 
