@@ -9,6 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ads")
+@CrossOrigin (origins = "http://localhost:8001", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
+
 
 public class UserAdController {
 
@@ -25,7 +27,7 @@ public class UserAdController {
     }
 
     @GetMapping("/{id}")
-    public UserAd findUserAd(@PathVariable Long id){
+    public UserAd findUserAdById(@PathVariable Long id){
         return userAdRepository.findById(id).orElseThrow(null);
     }
 

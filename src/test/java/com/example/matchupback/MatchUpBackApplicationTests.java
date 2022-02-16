@@ -38,6 +38,18 @@ class MatchUpBackApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));
     }
+
+    @Test
+    public void returnsAdById() throws Exception {
+        UserAd userAd = new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
+        userAdRepository.save(userAd);
+
+        mockMvc.perform(get("/ads/" + userAd.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value("1"))
+                .andExpect(jsonPath("$.[0].id").value(1));
+    }
+
 }
 
 
