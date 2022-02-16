@@ -4,6 +4,7 @@ import com.example.matchupback.Model.UserAd;
 import com.example.matchupback.Repositories.UserAdRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,11 +14,11 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @SpringBootTest
@@ -35,16 +36,22 @@ class MatchUpBackApplicationTests {
             userAdRepository.deleteAll();
         }
 
-        @Test
-        void returnsTheExistingUserAds() throws Exception {
+    @Test
+    public void test() throws Exception {
 
-            UserAd userAd = userAdRepository.save(new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h"));
+        String expectedJson = "[{\n" +
+                "        \"id\": 1,\n" +
+                "        \"name\": \"Carlos Perez\",\n" +
+                "        \"image\": \"no-image\",\n" +
+                "        \"location\": \"Barcelona\",\n" +
+                "        \"description\": \"description\",\n" +
+                "        \"time\": \"19h-20h\"\n" +
+                "    }]";  //Create JSON of expected result as a string
 
-            mockMvc.perform(get("/ads"))
-                    .andExpect(status().isOk())
-                    .andExpect(model().attribute("ads", hasItem(userAd)));
-        }
-        
-
+        mockMvc.perform(get("/ads"))
+                .andExpect(status().isOk()) //Check the status code of the response
+                .andExpect(content().json(expectedJson)); //Check the JSON of the response
     }
+}
+
 
