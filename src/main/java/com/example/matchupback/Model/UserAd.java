@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class UserAd implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+   // @Column(name = "id", nullable = false)
     private Long id;
     private String name;
     private String image;
@@ -20,6 +20,7 @@ public class UserAd implements Serializable {
     public UserAd() {}
 
     public UserAd(Long id, String name, String image, String location, String description, String time) {
+        this.id = id;
         this.name = name;
         this.image = image;
         this.location = location;
