@@ -27,12 +27,12 @@ class MatchUpBackApplicationTests {
         }
 
     @Test
-    public void test() throws Exception {
+    public void testControllerReturnSampleDataLoaderListWhenPerformGet() throws Exception {
 
         String expectedJson = "[    {\n" +
                 "        \"id\": 1,\n" +
-                "        \"name\": \"Carlos Perez\",\n" +
-                "        \"image\": \"no-image\",\n" +
+                "        \"name\": \"Maria Perez\",\n" +
+                "        \"image\": \"https://images.unsplash.com/photo-1644945570917-1585f682efaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80\",\n" +
                 "        \"location\": \"Barcelona\",\n" +
                 "        \"description\": \"description\",\n" +
                 "        \"time\": \"19h-20h\"\n" +
@@ -40,15 +40,15 @@ class MatchUpBackApplicationTests {
                 "    {\n" +
                 "        \"id\": 2,\n" +
                 "        \"name\": \"Juan Gonzalez\",\n" +
-                "        \"image\": \"no-image\",\n" +
+                "        \"image\": \"https://images.unsplash.com/photo-1644994141078-4f60ef42aa78?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80\",\n" +
                 "        \"location\": \"Colombia\",\n" +
                 "        \"description\": \"description\",\n" +
                 "        \"time\": \"18h-20h\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "        \"id\": 3,\n" +
-                "        \"name\": \"Carolta Perez\",\n" +
-                "        \"image\": \"no-image\",\n" +
+                "        \"name\": \"Carlos Perez\",\n" +
+                "        \"image\": \"https://images.unsplash.com/photo-1644896026815-76216723bb47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMzd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60\",\n" +
                 "        \"location\": \"Bilbao\",\n" +
                 "        \"description\": \"description\",\n" +
                 "        \"time\": \"14h-18h\"\n" +
@@ -56,7 +56,7 @@ class MatchUpBackApplicationTests {
                 "    {\n" +
                 "        \"id\": 4,\n" +
                 "        \"name\": \"Juana Perez\",\n" +
-                "        \"image\": \"no-image\",\n" +
+                "        \"image\": \"https://images.unsplash.com/photo-1644944693376-de2411390a44?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80\",\n" +
                 "        \"location\": \"Gijón\",\n" +
                 "        \"description\": \"description\",\n" +
                 "        \"time\": \"10h-13h\"\n" +
@@ -68,7 +68,7 @@ class MatchUpBackApplicationTests {
                 .andExpect(jsonPath("$.length()").value("4"))
                 .andExpect(jsonPath("$.[0].id").value(1))
                 .andExpect(jsonPath("$.[1].name").value("Juan Gonzalez"))
-                .andExpect(jsonPath("$.[2].image").value("no-image"))
+                .andExpect(jsonPath("$.[2].image").value("https://images.unsplash.com/photo-1644896026815-76216723bb47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMzd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"))
                 .andExpect(jsonPath("$.[3].location").value("Gijón"))
                 .andExpect(jsonPath("$.[0].description").value("description"))
                 .andExpect(jsonPath("$.[1].time").value("18h-20h"));
