@@ -1,14 +1,14 @@
-package Model;
+package com.example.matchupback.Model;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-public class UserAd {
-
+@Entity
+@Table(name = "ads")
+public class UserAd implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
     private String name;
     private String image;
@@ -16,10 +16,10 @@ public class UserAd {
     private String description;
     private String time;
 
+
     public UserAd() {}
 
     public UserAd(Long id, String name, String image, String location, String description, String time) {
-        this.id = id;
         this.name = name;
         this.image = image;
         this.location = location;

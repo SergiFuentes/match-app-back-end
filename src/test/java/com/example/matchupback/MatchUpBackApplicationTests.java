@@ -1,7 +1,7 @@
 package com.example.matchupback;
 
-import Model.UserAd;
-import Repositories.UserAdRepository;
+import com.example.matchupback.Model.UserAd;
+import com.example.matchupback.Repositories.UserAdRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -28,7 +28,7 @@ class MatchUpBackApplicationTests {
         MockMvc mockMvc;
 
         @Autowired
-        UserAdRepository userAdRepository;
+         UserAdRepository userAdRepository;
 
         @BeforeEach
         void setUp() {
@@ -38,24 +38,11 @@ class MatchUpBackApplicationTests {
         @Test
         void returnsTheExistingUserAds() throws Exception {
 
-            addSampleUserAds();
+            UserAd userAd = userAdRepository.save(new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h"));
 
             mockMvc.perform(get("/ads"))
                     .andExpect(status().isOk())
-                    .andExpect((ResultMatcher) jsonPath("$[*]", hasSize(2)))
-                    .andExpect((ResultMatcher) jsonPath("$[0].name", equalTo("Carlos Perez")))
-                    .andExpect((ResultMatcher) jsonPath("$[1].name", equalTo("Juan Martinez")))
-                    .andDo(print());
-        }
-
-        private void addSampleUserAds() {
-            List<UserAd> userAds = List.of(
-                    new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h"),
-                    new UserAd(2L,"Juan Martinez", "no-image", "Barcelona", "description", "19h-20h")
-
-            );
-
-            userAdRepository.saveAll(userAds);
+                    .andExpect(model().attribute("ads", hasItem(userAd)));
         }
         
 

@@ -1,6 +1,6 @@
-package Repositories;
+package com.example.matchupback.Repositories;
 
-import Model.UserAd;
+import com.example.matchupback.Model.UserAd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

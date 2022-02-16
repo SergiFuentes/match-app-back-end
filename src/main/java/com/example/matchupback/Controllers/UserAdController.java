@@ -1,7 +1,7 @@
-package Controllers;
+package com.example.matchupback.Controllers;
 
-import Model.UserAd;
-import Repositories.UserAdRepository;
+import com.example.matchupback.Model.UserAd;
+import com.example.matchupback.Repositories.UserAdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
