@@ -7,7 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -41,13 +45,16 @@ class MatchUpBackApplicationTests {
 
     @Test
     public void returnsAdById() throws Exception {
-        UserAd userAd = new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
+
+        UserAd userAd = new UserAd(5L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
         userAdRepository.save(userAd);
+
 
         mockMvc.perform(get("/ads/" + userAd.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value("1"))
-                .andExpect(jsonPath("$.[0].id").value(1));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value("6"))
+                .andExpect(jsonPath("$.id").value(5));
     }
 
 }

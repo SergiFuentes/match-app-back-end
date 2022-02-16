@@ -11,7 +11,7 @@ public class UserAdTest {
 
     @Test
     void returnsUserAdPostersId() {
-        UserAd userAd = new UserAd(2L, "Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
+        UserAd userAd = new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
         assertThat(userAd.getId(), equalTo(2L));
     }
     @Test
