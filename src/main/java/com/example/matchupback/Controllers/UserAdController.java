@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ads")
-@CrossOrigin (origins = "http://localhost:8001", methods = {RequestMethod.GET, RequestMethod.OPTIONS})
+@CrossOrigin (origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.OPTIONS})
 
 public class UserAdController {
 
