@@ -47,8 +47,11 @@ class MatchUpBackApplicationTests {
     public void returnsAdById() throws Exception {
 
         UserAd userAd = new UserAd(5L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
+        UserAd userAd2 = new UserAd(6L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
+        UserAd userAd3 = new UserAd(7L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
         userAdRepository.save(userAd);
-
+        userAdRepository.save(userAd2);
+        userAdRepository.save(userAd3);
 
         mockMvc.perform(get("/ads/" + userAd.getId()))
                 .andExpect(status().isOk())
