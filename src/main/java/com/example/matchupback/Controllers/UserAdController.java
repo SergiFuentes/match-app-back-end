@@ -26,7 +26,7 @@ public class UserAdController {
     }
 
     @GetMapping("/{id}")
-    public UserAd findUserAd(@PathVariable Long id){
+    public UserAd findUserAdById(@PathVariable Long id){
         return userAdRepository.findById(id).orElseThrow(null);
     }
 

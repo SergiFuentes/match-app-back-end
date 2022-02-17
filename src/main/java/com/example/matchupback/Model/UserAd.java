@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class UserAd implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   // @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     private String name;
     private String image;
@@ -16,11 +16,12 @@ public class UserAd implements Serializable {
     private String description;
     private String time;
     private String days;
+    private boolean verified;
 
 
     public UserAd() {}
 
-    public UserAd(Long id, String name, String image, String location, String description, String time, String days) {
+    public UserAd(Long id, String name, String image, String location, String description, String time, String days, boolean verified) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -28,6 +29,7 @@ public class UserAd implements Serializable {
         this.description = description;
         this.time = time;
         this.days = days;
+        this.verified = verified;
     }
 
     public Long getId() {
@@ -84,5 +86,13 @@ public class UserAd implements Serializable {
 
     public void setDays(String days) {
         this.days = days;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }
