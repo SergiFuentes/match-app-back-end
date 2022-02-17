@@ -15,17 +15,19 @@ public class UserAd implements Serializable {
     private String location;
     private String description;
     private String time;
+    private String days;
 
 
     public UserAd() {}
 
-    public UserAd(Long id, String name, String image, String location, String description, String time) {
+    public UserAd(Long id, String name, String image, String location, String description, String time, String days) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.location = location;
         this.description = description;
         this.time = time;
+        this.days = days;
     }
 
     public Long getId() {
@@ -74,5 +76,13 @@ public class UserAd implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
     }
 }

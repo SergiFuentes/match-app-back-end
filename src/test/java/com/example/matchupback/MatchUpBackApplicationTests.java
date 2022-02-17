@@ -31,7 +31,7 @@ class MatchUpBackApplicationTests {
     @Test
     public void returnsExistingAds() throws Exception {
 
-        UserAd userAd = new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h");
+        UserAd userAd = new UserAd(1L,"Carlos Perez", "no-image", "Barcelona", "description", "19h-20h", "");
         userAdRepository.save(userAd);
 
         mockMvc.perform(get("/ads"))
